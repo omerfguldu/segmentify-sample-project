@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+  padding: 10rem;
+}
+
+.products-container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 2rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 500;
+  padding: 3rem;
+}
+
+.categories-and-products-container {
+  display: flex;
+}
+
+.categories {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.category-list {
+  position: relative;
+  list-style: none;
+  border-radius: 5px;
+  padding: 1.5rem 3rem;
+  cursor: pointer;
+}
+
+.category-list.active {
+  background-color: rgba(192, 222, 247, 0.5);
+}
+
+.category-list-item {
+  text-decoration: none;
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: rgb(170, 161, 161);
+  pointer-events: none;
+}
+
+.category-list.active .category-list-item {
+  color: rgb(35, 24, 189);
+}
+
+.category-list.active .category-list-item::before {
+  content: "";
+  position: absolute;
+  width: 0.5rem;
+  height: 5.6rem;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  left: -2rem;
+  top: 0;
+  background: rgb(35, 24, 189);
+}
+
+.products {
+  flex: 1;
+}
