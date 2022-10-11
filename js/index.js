@@ -1,11 +1,11 @@
 import productData from "../data/product-list.json" assert { type: "json" };
 
 const productObj = { ...productData.responses[0] };
-let userCategories = productObj[0].params.userCategories;
+const userCategories = productObj[0].params.userCategories;
 const recommendedProducts = productObj[0].params.recommendedProducts;
 let selectedCategory = "Size Özel";
 
-userCategories = userCategories.map((category) => {
+let editedUserCategories = userCategories.map((category) => {
   const categoryArr = category.split(">");
   return categoryArr[categoryArr.length - 1];
 });
@@ -25,7 +25,7 @@ const splide = new Splide(".splide", {
 splide.mount();
 
 const categoriesList = document.querySelector(".categories");
-userCategories.map((category, index) => {
+editedUserCategories.map((category, index) => {
   const liEl = document.createElement("li");
   liEl.classList.add("category-list");
   liEl.innerHTML = `
@@ -36,14 +36,19 @@ userCategories.map((category, index) => {
 });
 
 const categoriesListItems = document.querySelectorAll(".category-list");
-categoriesListItems.forEach((item) => {
-  item.addEventListener("click", onCategory);
+categoriesListItems.forEach((item, index) => {
+  item.addEventListener("click", (event) => onCategory(event, index));
 });
 
-function onCategory(e) {
+function onCategory(e, i) {
   categoriesListItems.forEach((item) => {
     item.classList.remove("active");
   });
   e.target.classList.toggle("active");
   selectedCategory = e.target.textContent.trim();
+  showSelectedCategory(recommendedProducts[userCategories[i]]);
+}
+
+function showSelectedCategory(categoryProducts) {
+  console.log(categoryProducts);
 }
