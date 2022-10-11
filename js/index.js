@@ -11,8 +11,7 @@ let editedUserCategories = userCategories.map((category) => {
   return categoryArr[categoryArr.length - 1];
 });
 
-console.log(userCategories);
-console.log(recommendedProducts["Size Özel"]);
+console.log(recommendedProducts);
 
 const splide = new Splide(".splide", {
   type: "slide",
@@ -24,6 +23,8 @@ const splide = new Splide(".splide", {
   pagination: false,
 });
 splide.mount();
+
+showSelectedCategory(recommendedProducts[`Size Özel`]);
 
 const categoriesList = document.querySelector(".categories");
 editedUserCategories.map((category, index) => {
@@ -66,11 +67,14 @@ function showSelectedCategory(categoryProducts) {
       </div>
       <div class="cargo-container">
         <i class="fa-solid fa-truck"></i>
-        <p>${category.params.shippingFee}</p>
+        <p>${
+          category.params.shippingFee === "FREE"
+            ? "Ücretsiz Kargo"
+            : category.params.shippingFee
+        }</p>
       </div>
+      <button class="addToCart">Sepete Ekle</button>
     `;
     add(divEl);
-
-    console.log(category.image);
   });
 }

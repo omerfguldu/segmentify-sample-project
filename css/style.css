@@ -131,6 +131,12 @@ body {
   font-size: 1.4rem;
   font-weight: 600;
   padding: 0 2rem;
+  display: block; /* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  height: 3.6em;
+  line-height: 1.8em;
 }
 
 .price-container {
@@ -139,7 +145,7 @@ body {
   padding: 0.5rem 1.5rem;
   font-size: 3rem;
   font-weight: 600;
-  border-radius: 5px;
+  border-radius: 1rem;
 }
 
 .cargo-container {
@@ -154,4 +160,17 @@ body {
 
 .fa-truck {
   color: green;
+}
+
+.addToCart {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  padding: 1.5rem 0rem;
+  color: #fff;
+  background: rgb(62, 48, 255);
+  font-size: 2rem;
+  font-weight: 200;
+  cursor: pointer;
 }
