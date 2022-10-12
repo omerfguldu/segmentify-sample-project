@@ -23,6 +23,7 @@ body {
   height: 100%;
   background-color: #eee;
   padding: 10rem;
+  position: relative;
 }
 
 .products-container {
@@ -173,4 +174,66 @@ body {
   font-size: 2rem;
   font-weight: 200;
   cursor: pointer;
+}
+
+/* ADD TO CART POPUP STYLING */
+
+.add-to-cart-popup {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 40rem;
+  background-color: rgb(33, 31, 48);
+  padding: 2rem 1rem;
+  padding-right: 2rem;
+  border-radius: 1rem;
+  color: #fff;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.check-icon {
+  font-size: 3rem;
+  color: lightgreen;
+}
+
+.popup-content {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.content p {
+  font-size: 2rem;
+}
+
+.content a {
+  text-decoration: none;
+  color: rgb(168, 164, 226);
+  font-size: 1.4rem;
+}
+
+.close-icon {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.close-icon:hover {
+  color: lightcoral;
+}
+
+.hidden {
+  visibility: hidden;
 }

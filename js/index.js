@@ -1,18 +1,5 @@
 import productData from "../data/product-list.json" assert { type: "json" };
 
-const productObj = { ...productData.responses[0] };
-const userCategories = productObj[0].params.userCategories;
-const recommendedProducts = productObj[0].params.recommendedProducts;
-let selectedCategory = "Size Özel";
-const productListContainer = document.querySelector(".product-list-container");
-
-let editedUserCategories = userCategories.map((category) => {
-  const categoryArr = category.split(">");
-  return categoryArr[categoryArr.length - 1];
-});
-
-console.log(recommendedProducts);
-
 const splide = new Splide(".splide", {
   type: "slide",
   gap: "20px",
@@ -24,9 +11,26 @@ const splide = new Splide(".splide", {
 });
 splide.mount();
 
+const productObj = { ...productData.responses[0] };
+const userCategories = productObj[0].params.userCategories;
+const recommendedProducts = productObj[0].params.recommendedProducts;
+const productListContainer = document.querySelector(".product-list-container");
+const addToCartPopup = document.querySelector(".add-to-cart-popup");
+const closeIcon = document.querySelector(".close-icon");
+let selectedCategory = "Size Özel";
+let editedUserCategories = userCategories.map((category) => {
+  const categoryArr = category.split(">");
+  return categoryArr[categoryArr.length - 1];
+});
+let categoriesList;
+let categoriesListItems;
+let addToCartButtons;
+
+console.log(recommendedProducts);
+
 showSelectedCategory(recommendedProducts[`Size Özel`]);
 
-const categoriesList = document.querySelector(".categories");
+categoriesList = document.querySelector(".categories");
 editedUserCategories.map((category, index) => {
   const liEl = document.createElement("li");
   liEl.classList.add("category-list");
@@ -37,7 +41,7 @@ editedUserCategories.map((category, index) => {
   categoriesList.append(liEl);
 });
 
-const categoriesListItems = document.querySelectorAll(".category-list");
+categoriesListItems = document.querySelectorAll(".category-list");
 categoriesListItems.forEach((item, index) => {
   item.addEventListener("click", (event) => onCategory(event, index));
 });
@@ -65,16 +69,30 @@ function showSelectedCategory(categoryProducts) {
       <div class="price-container">
         <p class="price-text">${category.priceText}</p>
       </div>
-      <div class="cargo-container">
+      <div class="cargo-container ${
+        category.params.shippingFee !== "FREE" ? "hidden" : ""
+      }">
         <i class="fa-solid fa-truck"></i>
-        <p>${
-          category.params.shippingFee === "FREE"
-            ? "Ücretsiz Kargo"
-            : category.params.shippingFee
-        }</p>
+        <p>Ücretsiz Kargo</p>
       </div>
       <button class="addToCart">Sepete Ekle</button>
     `;
     add(divEl);
   });
+  addToCartButtons = document.querySelectorAll(".addToCart");
+  addToCartButtons.forEach((button) => {
+    button.addEventListener("click", onAddToCart);
+  });
+}
+
+function onAddToCart() {
+  addToCartPopup.style.opacity = "1";
+  setTimeout(() => {
+    addToCartPopup.style.opacity = "0";
+  }, 2000);
+}
+
+closeIcon.addEventListener("click", onClose);
+function onClose() {
+  addToCartPopup.style.opacity = "0";
 }
