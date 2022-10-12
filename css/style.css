@@ -59,10 +59,19 @@ body {
   border-radius: 5px;
   padding: 1.5rem 3rem;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .category-list.active {
   background-color: rgba(192, 222, 247, 0.5);
+}
+
+.category-list:hover {
+  background-color: rgba(192, 222, 247, 0.5);
+}
+
+.category-list:hover .category-list-item {
+  color: rgb(35, 24, 189);
 }
 
 .category-list-item {
@@ -174,6 +183,13 @@ body {
   font-size: 2rem;
   font-weight: 200;
   cursor: pointer;
+  border: 1px solid rgb(62, 48, 255);
+  transition: all 0.5s ease;
+}
+
+.addToCart:hover {
+  color: rgb(62, 48, 255);
+  background: #fff;
 }
 
 /* ADD TO CART POPUP STYLING */
@@ -236,4 +252,68 @@ body {
 
 .hidden {
   visibility: hidden;
+}
+
+@media screen and (min-width: 1051px) and (max-width: 1350px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media screen and (min-width: 851px) and (max-width: 1050px) {
+  html {
+    font-size: 40%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  html {
+    font-size: 40%;
+  }
+
+  .categories-and-products-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+  }
+
+  .categories {
+    flex-direction: row;
+    overflow: hidden;
+    overflow-x: scroll;
+  }
+
+  .category-list {
+    border-radius: 0px;
+    padding: 1rem;
+    white-space: nowrap;
+  }
+
+  .category-list.active {
+    background-color: transparent;
+  }
+
+  .category-list:hover {
+    background-color: transparent;
+  }
+
+  .category-list-item {
+    font-size: 1.4rem;
+    word-wrap: normal;
+  }
+
+  .category-list.active .category-list-item {
+    color: #000;
+  }
+
+  .category-list.active .category-list-item::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0.3rem;
+    border-radius: 0;
+    left: 0;
+    top: 4rem;
+    background: rgb(35, 24, 189);
+  }
 }
